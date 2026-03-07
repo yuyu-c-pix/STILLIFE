@@ -1,0 +1,200 @@
+/* ─────────────────────────────────────────
+   css/shop.css  —  Still Life Shop Page
+───────────────────────────────────────── */
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body { background-color: #DFFCFA; }
+
+/* ── Page Wrapper: 1920×1080 고정 ── */
+#page-wrapper {
+  width: 1920px;
+  height: 1080px;
+  position: relative;
+  background-color: #E0FCFF;
+  overflow: hidden;
+}
+
+/* ══════════════════════════════════════════
+   Center Text — 수직/수평 중앙
+══════════════════════════════════════════ */
+.shop-center-text {
+  position: absolute;
+  left: 591px;
+  top: 547px;
+  width: 738.656px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 21px;
+  transform: translateY(-50%);  /* 세로 정확히 중앙 */
+}
+
+.shop-title {
+  color: #FF437D;
+  font-family: "megascope-variable", sans-serif;
+  font-size: 64px;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 1.28px;
+  text-align: center;
+}
+
+.shop-body-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.shop-en {
+  color: #FF437D;
+  font-family: "megascope-variable", sans-serif;
+  font-size: 34px;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.68px;
+  text-align: center;
+}
+
+.shop-kr {
+  color: #FF437D;
+  font-family: "Sandoll 60", sans-serif;
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 36px;
+  letter-spacing: -3.36px;
+  text-align: center;
+}
+
+/* ══════════════════════════════════════════
+   Shop Items — Base
+══════════════════════════════════════════ */
+.shop-item {
+  position: absolute;
+  border: 2px dashed #000;
+  cursor: pointer;
+}
+
+/* Hover Overlay 컨테이너 */
+.item-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+}
+
+.shop-item:hover .item-overlay { opacity: 1; }
+.shop-item:hover { pointer-events: auto; }
+.shop-item:hover .item-overlay { pointer-events: auto; }
+
+/* 블러 내부 박스 */
+.overlay-inner {
+  position: absolute;
+  inset: 40px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px dashed #000;
+  backdrop-filter: blur(5.75px);
+  -webkit-backdrop-filter: blur(5.75px);
+}
+
+.add-to-cart {
+  color: #000;
+  font-family: "megascope-variable", sans-serif;
+  font-size: 34px;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.68px;
+  white-space: nowrap;
+}
+
+/* 파란색(item-6)만 텍스트 90도 회전 */
+.item-6 .add-to-cart {
+  transform: rotate(90deg);
+  display: block;
+}
+
+/* ══════════════════════════════════════════
+   Items + Overlay Colors
+══════════════════════════════════════════ */
+
+/* 1 — 주황, hover 초록 */
+.item-1 {
+  left: 217px; top: 179px;
+  width: 299.52px; height: 299.52px;
+  transform: rotate(-19.15deg);
+  background: url('../assets/images/shop/s1.png') 50% / contain no-repeat, #FFB040;
+}
+.overlay-1 .overlay-inner { background: rgba(83, 201, 72, 0.60); }
+
+/* 2 — 초록, hover 주황 */
+.item-2 {
+  left: 669px; top: 175px;
+  width: 232.53px; height: 232.53px;
+  transform: rotate(21.498deg);
+  background: url('../assets/images/shop/s2.png') 50% / contain no-repeat, #53C948;
+}
+.overlay-2 .overlay-inner { background: rgba(255, 176, 64, 0.60); }
+
+/* 3 — 핑크, hover 파랑 */
+.item-3 {
+  left: 1182px; top: 162px;
+  width: 346.922px; height: 232.53px;
+  transform: rotate(-24.071deg);
+  background: url('../assets/images/shop/s3.png') 52.991px 60.67px / 73.619% 69.156% no-repeat, #FF437D;
+}
+.overlay-3 .overlay-inner { background: rgba(70, 141, 255, 0.60); }
+
+/* 4 — 하늘, hover 회색 */
+.item-4 {
+  left: 1523px; top: 490px;
+  width: 299.52px; height: 299.52px;
+  transform: rotate(18.2deg);
+  background: url('../assets/images/shop/s4.png') 50% / contain no-repeat, #5BE0EF;
+}
+.overlay-4 .overlay-inner { background: rgba(243, 244, 248, 0.60); }
+
+/* 5 — 회색, hover 하늘 */
+.item-5 {
+  left: 1139px; top: 686px;
+  width: 203.377px; height: 232.53px;
+  transform: rotate(-21.812deg);
+  background: url('../assets/images/shop/s5.png') 50% / contain no-repeat, #F3F4F8;
+}
+.overlay-5 .overlay-inner { background: rgba(91, 224, 239, 0.60); }
+
+/* 6 — 파랑, hover 형광핑크 */
+.item-6 {
+  left: 692px; top: 689px;
+  width: 232.53px; height: 311.488px;
+  transform: rotate(-65.439deg);
+  background: url('../assets/images/shop/s6.png') 50% / contain no-repeat, #468DFF;
+}
+.overlay-6 .overlay-inner { background: rgba(255, 67, 125, 0.60); }
+
+/* 7 — 형광핑크, hover 하늘 */
+.item-7 {
+  left: 171px; top: 686px;
+  width: 203.377px; height: 232.53px;
+  transform: rotate(-21.812deg);
+  background: url('../assets/images/shop/s7.png') 50% / contain no-repeat, #FF437D;
+}
+.overlay-7 .overlay-inner { background: rgba(91, 224, 239, 0.60); }
+
+.add-to-cart.added {
+  color: #fff;
+}
+
+.shop-item.pop {
+  transform: scale(0.94);
+  transition: transform 0.12s cubic-bezier(.36,.07,.19,.97);
+}
+.shop-item {
+  transition: transform 0.2s cubic-bezier(.36,.07,.19,.97);
+}

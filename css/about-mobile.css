@@ -1,0 +1,182 @@
+    /* ─────────────────────────────────────────
+    css/about-mobile.css  —  Still Life About Mobile
+    @media (max-width: 768px) 전용
+    ───────────────────────────────────────── */
+
+    .about-mobile-wrap {
+    display: none;
+    }
+
+    @media (max-width: 768px) {
+
+    html, body {
+        overflow: auto !important;
+    }
+
+    #about-content { display: none; }
+
+    .about-mobile-wrap {
+        display: block;
+        width: 100%;
+        background: #E0FCFF;
+        padding-top: 140px;
+        padding-bottom: 100px;
+        box-sizing: border-box;
+        overflow-x: hidden;
+    }
+
+    /* ══════════════════════════════════════════
+        Pink Box
+    ══════════════════════════════════════════ */
+    .a-box-pink {
+        margin: 0 30.6px 0 32.1px;
+        border: 2px dashed #000;
+        background: #FF437D;
+        padding: 20px 24px 60px 20px;
+        box-sizing: border-box;
+    }
+
+    .a-pink-p {
+        color: #FFF;
+        font-family: "megascope-variable", sans-serif;
+        font-size: 32px;
+        font-weight: 400;
+        line-height: 33px;
+        letter-spacing: 0.64px;
+        margin: 0 0 33px 0;
+    }
+    .a-pink-p:last-child { margin-bottom: 0; }
+
+    /* ══════════════════════════════════════════
+        Symbol
+    ══════════════════════════════════════════ */
+    .about-symbol {
+        display: block;
+        width: 114.691px;
+        height: 114.47px;
+        object-fit: contain;
+        margin: -40px 0 0 10.6px;
+        transform: rotate(40deg);
+    }
+
+    /* ══════════════════════════════════════════
+        Green Box
+    ══════════════════════════════════════════ */
+    .a-box-green {
+        margin: -40px 30.6px 0 32.1px;
+        border: 2px dashed #000;
+        background: #53C948;
+        padding: 20px 24px 60px 20px;
+        box-sizing: border-box;
+    }
+
+    .a-green-p {
+        margin: 0 0 33px 0;
+    }
+    .a-green-p:last-child { margin-bottom: 0; }
+
+    .a-en {
+        color: #FFF;
+        font-family: "megascope-variable", sans-serif;
+        font-size: 32px;
+        font-weight: 400;
+        line-height: 33px;
+        letter-spacing: 0.64px;
+    }
+
+    .a-kr {
+        color: #FFF;
+        font-family: "Sandoll 60", sans-serif;
+        font-size: 30px;
+        font-weight: 400;
+        line-height: 34px;
+        letter-spacing: -3.15px;
+    }
+
+    /* ══════════════════════════════════════════
+        Blue Box
+    ══════════════════════════════════════════ */
+    .a-box-blue {
+        display: inline-flex;
+        width: 69vw;
+        flex-direction: column;
+        gap: 10px;
+        border: 2px dashed #000;
+        background: #468DFF;
+        padding: 20px 34px 60px 20px;
+        box-sizing: border-box;
+        transform: rotate(10.553deg);
+        transform-origin: center center;
+        margin: -30px 2vw 0 20vw; /* 오른쪽으로 이동: left 11.3vw → 16vw */
+        }
+
+    .a-blue-p {
+        color: #FFF;
+        font-family: "megascope-variable", sans-serif;
+        font-size: 32px;
+        font-weight: 400;
+        line-height: 34px;
+        letter-spacing: 0.64px;
+        margin: 0 0 33px 0;
+    }
+    .a-blue-p:last-child { margin-bottom: 0; }
+
+    /* ══════════════════════════════════════════
+        Gray Box
+    ══════════════════════════════════════════ */
+   .a-box-gray {
+        display: inline-flex;
+        width: 69vw;
+        flex-direction: column;
+        gap: 10px;
+        border: 2px dashed #000;
+        background: #F3F4F8;
+        padding: 20px 34px 60px 20px;
+        box-sizing: border-box;
+        transform: rotate(-9.128deg);
+        transform-origin: center center;
+        margin: 0px 8vw 0 10vw; /* 오른쪽으로 이동: left 5.3vw → 10vw */
+        }
+
+    .a-gray-p {
+        color: #FF437D;
+        font-family: "megascope-variable", sans-serif;
+        font-size: 32px;
+        font-weight: 400;
+        line-height: 34px;
+        letter-spacing: 0.64px;
+        margin: 0 0 33px 0;
+    }
+    .a-gray-p:last-child { margin-bottom: 0; }
+
+    /* ══════════════════════════════════════════
+        Spinning Pink Circle
+    ══════════════════════════════════════════ */
+    @keyframes circle-spin {
+        from { transform: rotate(0deg); }
+        to   { transform: rotate(360deg); }
+    }
+
+    .about-circle {
+        display: flex;
+        width: 80.064px;
+        height: 80.064px;
+        align-items: center;
+        justify-content: center;
+        border-radius: 45.032px;
+        background: #FF437D;
+        box-sizing: border-box;
+        transform-origin: center center;
+        animation: circle-spin 6s linear infinite;
+        margin: -330px auto 0 0; /* 왼쪽으로: auto를 오른쪽으로 */
+        margin-left: 68vw; /* 왼쪽에서 8vw */
+        }
+
+    .about-circle img {
+        width: 23.075px;
+        height: 31.853px;
+        flex-shrink: 0;
+        object-fit: contain;
+    }
+
+    } /* end @media */

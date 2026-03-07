@@ -1,0 +1,142 @@
+/* css/home-mobile.css — Still Life Mobile Home */
+
+.mobile-home { display: none; }
+
+@media (max-width: 768px) {
+
+  html, body {
+    overflow-x: hidden !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  #home-content { display: none !important; }
+
+  .mobile-home {
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    background: #E0FCFF;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card-stack-mobile {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .card {
+    position: absolute;
+    box-sizing: border-box;
+    border: 2px dashed #222;
+    border-radius: 0;
+    opacity: 0;
+    transform: translateY(8vh);
+  }
+
+  /* ── Blue card ── */
+  .card-blue {
+    left: 10vw;
+    top: 19vh;
+    width: 78.7vw;      /* 307/390 */
+    background: #31D7EA;
+    color: #fff;
+    font-family: "megascope-variable", sans-serif;
+    font-size: 8.2vw;
+    font-weight: 400;
+    line-height: 1.03;
+    letter-spacing: 0.16vw;
+    padding: 5.1vw 5.6vw;
+    z-index: 3;
+    padding-bottom: 25vw;
+  }
+
+  /* ── Pink card ── */
+  .card-pink {
+    left: 26vw;
+    top: 46vh;
+    width: 57.2vw;      /* 223/390 */
+    background: #FF437D;
+    color: #FFD24A;
+    padding: 5.1vw 6.2vw;
+    z-index: 4;
+  }
+
+  .card-title {
+    font-family: "megascope-variable", sans-serif;
+    font-size: 8.2vw;
+    font-weight: 400;
+    color: #FFD24A;
+    line-height: 1.13;
+    letter-spacing: 0.16vw;
+    display: inline;
+    margin-bottom: 1vw;
+  }
+
+  .card-pink .card-text {
+    font-family: "Sandoll 60", "sandoll-60", sans-serif;
+    font-size: 7vw;
+    font-weight: 400;
+    color: #FFD24A;
+    line-height: 1.23;
+    letter-spacing: -0.7vw;
+  }
+
+  .card-blue .card-text {
+    font-family: "megascope-variable", sans-serif;
+    font-size: 8.2vw;
+    font-weight: 400;
+    color: #fff;
+    line-height: 1.03;
+    letter-spacing: 0.2vw;
+  }
+
+  /* ── Orange card ── */
+  .card-orange {
+    left: 12.2vw;
+    top: 74vh;
+    width: 81.4vw;      /* 317/390 */
+    background: rgba(255, 176, 64, 0.68);
+    color: #468DFF;
+    font-family: "megascope-variable", sans-serif;
+    font-size: 5.8vw;
+    font-weight: 400;
+    letter-spacing: 0.13vw;
+    padding: 3.8vw 2.8vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    z-index: 5;
+  }
+
+  .card-text {
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    line-height: inherit;
+  }
+
+  /* ── Bottom STILLLIFE ── */
+  .stilllife-bottom {
+    position: absolute;
+    left: 0;
+    bottom: 3vh;
+    width: 100%;
+    z-index: 0;
+    opacity: 0;
+    line-height: 0;
+    padding: 0 4vw;
+    box-sizing: border-box;
+  }
+  .stilllife-bottom img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+} /* end @media */

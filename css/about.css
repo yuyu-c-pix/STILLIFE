@@ -1,0 +1,223 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #E0FCFF;
+}
+
+#about-content {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 1920px;
+  height: 1080px;
+  background: #E0FCFF;
+  transform-origin: top left;
+  transform: scale(0.75);
+}
+
+/* ── 핑크 박스 ──
+   left:360 top:224 right:970 bottom:40 (1920×1080 기준)
+   width = 1920-360-970 = 590px  height = 1080-224-40 = 816px
+*/
+#box-pink-main {
+  position: absolute;
+  left: 360px;
+  top: 224px;
+  width: 590px;
+  height: 816px;
+  background: #FF437D;
+  border: 2px dashed #000;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 30px 48px 28px 20px;
+  box-sizing: border-box;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.pink-text-wrap {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+.pink-text-wrap p { margin: 0; }
+.pink-text-wrap p.en {
+  color: #FFF;
+  font-family: "megascope-variable", sans-serif;
+  font-size: 34px;
+  font-weight: 400;
+  line-height: 36px;
+  letter-spacing: 0.68px;
+}
+.pink-text-wrap p.ko {
+  color: #FFF;
+  font-family: "Sandoll 60", "sandoll-60", sans-serif;
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 36px;
+  letter-spacing: -3.36px;
+}
+.pink-text-wrap .en-inline {
+  font-family: "megascope-variable", sans-serif;
+}
+
+/* ── 회색 박스 ──
+   left:956 top:185  text:232px  padding: 20 16 64 20
+   box width = 232+20+16+4(border) = 272px
+   height = 1080-185-445 = 450px
+*/
+#box-gray {
+  position: absolute;
+  left: 1050px;
+  top: 185px;
+  width: 272px;
+  height: 380px;
+  background: #E9E9E9;
+  border: 2px dashed #000;
+  transform: rotate(19.291deg);
+  transform-origin: left top;
+  padding: 20px 16px 64px 20px;
+  box-sizing: border-box;
+  overflow: hidden;
+  z-index: 12; /* 이 값만 조정, 나머지 패딩은 그대로 */
+}
+
+.gray-text-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+.gray-text-wrap p { margin: 0; }
+.gray-text-wrap .label {
+  color: #FF437D;
+  font-family: "megascope-variable", sans-serif;
+  font-size: 34px;
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: 0.68px;
+}
+.gray-text-wrap .body {
+  color: #FF437D;
+  font-family: "megascope-variable", sans-serif;
+  font-size: 34px;
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: 0.68px;
+}
+
+/* ── 반투명 심볼 ──
+   left:1363 top:352  size:167×167
+*/
+#symbol-translucent {
+  position: absolute;
+  left: 1333px;
+  top: 352px;
+  width: 167px;
+  height: 167px;
+  z-index: 11;
+  pointer-events: none;
+}
+#symbol-translucent svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* ── 초록 박스 ──
+   left:985 top:591  text:342px  padding: 20 160 50 20
+   box width = 342+20+160+4 = 526px
+   height = 1080-591-60.8 ≈ 428px
+*/
+#box-green {
+  position: absolute;
+  left: 990px;
+  top: 700px;
+  width: 580px;
+  height: 330px;
+  background: #53C948;
+  border: 2px dashed #000;
+  transform: rotate(-14.66deg);
+  transform-origin: left top;
+  padding: 20px 160px 50px 20px;
+  box-sizing: border-box;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.green-text-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+.green-text-wrap p { margin: 0; }
+.green-text-wrap .label {
+  color: #FFF;
+  font-family: "megascope-variable", sans-serif;
+  font-size: 34px;
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: 0.68px;
+}
+.green-text-wrap .body {
+  color: #FFF;
+  font-family: "megascope-variable", sans-serif;
+  font-size: 34px;
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: 0.68px;
+}
+
+/* ── 작은 원형 버튼 ──
+   left:1557 top:928
+   size: padding 26/27 + icon 36×38 = ~90px
+   계속 회전
+*/
+@keyframes circle-spin-desktop {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+#btn-cyan {
+  position: absolute;
+  left: 1557px;
+  top: 940px;
+  width: 90px;
+  height: 90px;
+  border-radius: 45px;
+  background: #5BE0EF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 13;
+  padding: 26px 27px;
+  box-sizing: border-box;
+  animation: circle-spin-desktop 6s linear infinite;
+  transform-origin: center center;
+}
+#btn-cyan svg {
+  width: 36px;
+  height: 40px;
+  flex-shrink: 0;
+}
+
+/* 폰트 강제 적용 */
+#about-content * { font-family: inherit; }
+#about-content .en,
+#about-content .gray-text-wrap p,
+#about-content .green-text-wrap p {
+  font-family: "megascope-variable", sans-serif !important;
+}
+#about-content .ko {
+  font-family: "Sandoll 60", "sandoll-60", sans-serif !important;
+}
+#about-content .ko .en-inline,
+#about-content .en-inline {
+font-family: "megascope-variable", sans-serif !important;
+letter-spacing: 0.68px; /* 상속된 -3.36px 덮어쓰기 */
+}

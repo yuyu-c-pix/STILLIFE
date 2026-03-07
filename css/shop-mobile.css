@@ -1,0 +1,192 @@
+/* ─────────────────────────────────────────
+   css/shop-mobile.css — Still Life Shop Mobile
+───────────────────────────────────────── */
+
+.object-stack-mobile { display: none; }
+
+@media (max-width: 768px) {
+
+  html, body { overflow: auto !important; }
+  #page-wrapper { display: none !important; }
+
+  .object-stack-mobile {
+    display: block;
+    position: relative;
+    width: 100vw;
+    min-height: 2000px;
+    background: #E0FCFF;
+    overflow: hidden;
+  }
+
+  /* ── Card base ── */
+  .object-card {
+    position: absolute;
+    border: 2px dashed #222;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  /* ── Card sizes ── */
+  .card-green, .card-cyan {
+    width: 59.7vw;
+    height: 59.7vw;
+  }
+  .card-pink {
+    width: 46.9vw;
+    height: 31.5vw;
+  }
+  .card-blue {
+    width: 38.2vw;
+    height: 51.3vw;
+  }
+  .card-white {
+    width: 38.5vw;
+    height: 43.8vw;
+  }
+  .card-orange {
+    width: 52.8vw;
+    height: 52.8vw;
+  }
+
+  /* ── Card backgrounds ── */
+  .card-green  { background: #53C948; }
+  .card-pink   { background: #FF437D; }
+  .card-blue   { background: #468DFF; }
+  .card-cyan   { background: #5BE0EF; }
+  .card-white  { background: #F3F4F8; }
+  .card-orange { background: #FFB040; }
+
+  /* ── Card images ── */
+  .object-card img {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+    display: block;
+    position: relative;
+    z-index: 0;
+  }
+
+  /* ── Add to Cart overlay ── */
+  .mobile-item-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    z-index: 2;
+  }
+
+  .object-card.show-overlay .mobile-item-overlay {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .mobile-overlay-inner {
+    position: absolute;
+    inset: 10px 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed #000;
+    backdrop-filter: blur(5.75px);
+    -webkit-backdrop-filter: blur(5.75px);
+    background: rgba(255, 255, 255, 0.30); /* fallback */
+  }
+
+  /* 카드별 오버레이 색상 — 데스크탑과 동일한 규칙 */
+  .card-green  .mobile-overlay-inner { background: rgba(83,  201, 72,  0.60); }
+  .card-pink   .mobile-overlay-inner { background: rgba(70,  141, 255, 0.60); }
+  .card-blue   .mobile-overlay-inner { background: rgba(255, 67,  125, 0.60); }
+  .card-cyan   .mobile-overlay-inner { background: rgba(243, 244, 248, 0.60); }
+  .card-white  .mobile-overlay-inner { background: rgba(91,  224, 239, 0.60); }
+  .card-orange .mobile-overlay-inner { background: rgba(83,  201, 72,  0.60); }
+
+  .mobile-add-to-cart {
+    font-family: "megascope-variable", sans-serif;
+    font-size: 24px;
+    font-weight: 400;
+    letter-spacing: 0.68px;
+    color: #000;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+
+  .object-card.added .mobile-add-to-cart {
+    color: #fff;
+  }
+
+  /* ── Rotation animation on add ── */
+  @keyframes mobile-card-spin {
+    0%   { transform: var(--base-transform) scale(1); }
+    20%  { transform: var(--base-transform) scale(0.92) rotate(10deg); }
+    50%  { transform: var(--base-transform) scale(1.05) rotate(-6deg); }
+    80%  { transform: var(--base-transform) scale(0.97) rotate(3deg); }
+    100% { transform: var(--base-transform) scale(1); }
+  }
+
+  .object-card.pop-mobile {
+    animation: mobile-card-spin 0.45s cubic-bezier(.36,.07,.19,.97) forwards;
+  }
+
+  /* ── Message block ── */
+  .object-message {
+    position: absolute;
+    top: 760px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 75.9vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 27px;
+  }
+
+  .object-message-title {
+    font-family: "megascope-variable", sans-serif;
+    font-size: 36.5px;
+    font-weight: 500;
+    letter-spacing: 0.73px;
+    color: #FF437D;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  .object-message-desc {
+    font-family: "megascope-variable", sans-serif;
+    font-size: 32px;
+    font-weight: 400;
+    letter-spacing: 0.68px;
+    color: #FF437D;
+    text-align: center;
+    line-height: 33px;
+  }
+
+  .object-message-ko {
+    display: block;
+    font-family: "Sandoll 60", sans-serif;
+    font-size: 30px;
+    letter-spacing: -3.15px;
+    color: #FF437D;
+    margin-top: 8px;
+    line-height: 33px;
+  }
+
+} /* end @media */
+
+.object-stack-mobile {
+  display: block;
+  position: relative;
+  width: 100vw;
+  min-height: 2100px;
+  background: #DFFCFA;
+  overflow: hidden;
+  padding-top: 159px; /* ← 이거 추가 */
+  box-sizing: border-box;
+}
