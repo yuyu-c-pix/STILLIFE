@@ -41,3 +41,9 @@ document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("click", fadeAndRedirect);
   video.addEventListener("ended", fadeAndRedirect);
 });
+
+// 영상 길이 + 여유 시간 후 강제 이동
+video.addEventListener("loadedmetadata", () => {
+  const duration = video.duration * 1000; // ms
+  setTimeout(fadeAndRedirect, duration + 500);
+});
