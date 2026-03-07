@@ -10,7 +10,8 @@ html, body { background-color: #DFFCFA; }
 #page-wrapper {
   width: 1920px;
   height: 1080px;
-  position: relative;
+  position: fixed;
+  top: 0; left: 0;
   background-color: #E0FCFF;
   overflow: hidden;
 }
@@ -197,4 +198,9 @@ html, body { background-color: #DFFCFA; }
 }
 .shop-item {
   transition: transform 0.2s cubic-bezier(.36,.07,.19,.97);
+}
+
+html, body {
+  background-color: #DFFCFA;
+  overflow: hidden;  /* ← 추가 */
 }
