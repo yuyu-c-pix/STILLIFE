@@ -10,8 +10,7 @@ html, body { background-color: #DFFCFA; }
 #page-wrapper {
   width: 1920px;
   height: 1080px;
-  position: fixed;
-  top: 0; left: 0;
+  position: relative;
   background-color: #E0FCFF;
   overflow: hidden;
 }
