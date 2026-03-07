@@ -159,12 +159,6 @@ window.openCart = function() {
 
 symbolWrap.addEventListener('click', (e) => {
   if (!menuOpen) {
-    window.location.href = 'home.html';
-  }
-});
-
-symbolWrap.addEventListener('click', (e) => {
-  if (!menuOpen) {
     const isSubFolder = window.location.pathname.split('/').filter(Boolean).length > 1;
     window.location.href = isSubFolder ? '../home.html' : 'home.html';
   }
