@@ -159,7 +159,7 @@ window.openCart = function() {
 
 symbolWrap.addEventListener('click', (e) => {
   if (!menuOpen) {
-    const isSubFolder = window.location.pathname.split('/').filter(Boolean).length > 1;
+    const isSubFolder = window.location.pathname.split('/').filter(Boolean).length > 2;
     window.location.href = isSubFolder ? '../home.html' : 'home.html';
   }
 });

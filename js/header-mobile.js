@@ -6,7 +6,7 @@
   'use strict';
 
   /* ── 경로 깊이 감지: home.html(루트) vs 하위폴더 ── */
-  const isSubFolder = window.location.pathname.split('/').filter(Boolean).length > 1;
+  const isSubFolder = window.location.pathname.split('/').filter(Boolean).length > 2;
   const base = isSubFolder ? '../' : '';
 
   /* ── DOM 주입 ── */
