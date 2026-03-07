@@ -203,3 +203,7 @@ html, body {
   background-color: #DFFCFA;
   overflow: hidden;  /* ← 추가 */
 }
+
+.object-stack-mobile {
+  display: none;
+}
