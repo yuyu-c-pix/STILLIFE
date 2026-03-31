@@ -130,11 +130,11 @@
         <span class="int-mobile-ko">나만의 삶의 태도를 담은 오브제를 적어보세요.</span>
       </div>
       <div class="int-mobile-input-wrap">
-        <div id="int-m-placeholder" class="int-mobile-placeholder">
-          Type Here<span class="int-cursor-blink-m">|</span>
-        </div>
-        <input id="int-m-input" class="int-mobile-input" enterkeyhint="send" type="text" autocomplete="off" enterkeyhint="done">
-      </div>
+      <div id="int-m-placeholder" ...>Type Here<span ...>|</span></div>
+      <form id="int-m-form" action="javascript:void(0)">
+        <input id="int-m-input" class="int-mobile-input" enterkeyhint="send" type="text" autocomplete="off">
+      </form>
+    </div>
     </div>
 
     <img class="int-mobile-symbol" src="../assets/images/interactive/symbol.png" alt="symbol">
@@ -258,6 +258,11 @@
 
     // iOS 대응
     input.addEventListener('change', () => {
+      submitCard();
+    });
+
+    document.getElementById('int-m-form').addEventListener('submit', function(e) {
+      e.preventDefault();
       submitCard();
     });
     input.addEventListener('blur', () => {
