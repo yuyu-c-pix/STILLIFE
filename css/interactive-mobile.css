@@ -155,7 +155,7 @@
     border: none;
     background: transparent;
     color: rgba(70, 141, 255, 0.80);
-    font-family: "megascope-variable", sans-serif;
+    font-family: -apple-system, "megascope-variable", sans-serif;
     font-size: 34px;
     font-weight: 400;
     letter-spacing: 0.68px;
