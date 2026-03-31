@@ -133,7 +133,7 @@
         <div id="int-m-placeholder" class="int-mobile-placeholder">
           Type Here<span class="int-cursor-blink-m">|</span>
         </div>
-        <input id="int-m-input" class="int-mobile-input" type="text" autocomplete="off" enterkeyhint="done">
+        <input id="int-m-input" class="int-mobile-input" enterkeyhint="send" type="text" autocomplete="off" enterkeyhint="done">
       </div>
     </div>
 
@@ -254,6 +254,11 @@
     });
     input.addEventListener('keyup', e => {
       if (e.key === 'Enter') { e.preventDefault(); submitCard(); }
+    });
+
+    // iOS 대응
+    input.addEventListener('change', () => {
+      submitCard();
     });
     input.addEventListener('blur', () => {
       if (!input.value.trim()) {

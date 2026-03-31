@@ -151,6 +151,7 @@
     if (e.key === 'Enter') { e.preventDefault(); submitInput(); }
     if (e.key === 'Escape') deactivateInput();
   });
+  
 
   inputEl.addEventListener('blur', function () {
     /* 약간 딜레이 후 체크 — 버튼 탭 시 blur가 먼저 와도 submit 가능하게 */
