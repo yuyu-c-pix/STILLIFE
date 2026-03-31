@@ -175,3 +175,14 @@
   caret-color: rgba(70, 141, 255, 0.80) !important;
   -webkit-text-fill-color: rgba(70, 141, 255, 0.80) !important;
 }
+
+/* 미디어 쿼리 밖 — input 기본 크기 보장 */
+.int-mobile-input {
+  width: 100%;
+  min-height: 44px;
+  font-size: 34px;
+  display: none;
+}
+.int-mobile-input.active {
+  display: block;
+}
