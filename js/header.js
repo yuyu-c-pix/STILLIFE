@@ -163,29 +163,3 @@ symbolWrap.addEventListener('click', (e) => {
     window.location.href = isSubFolder ? '../home.html' : 'home.html';
   }
 });
-
-// ── Checkout popup ──
-(function () {
-  function showCheckoutPopup() {
-    let popup = document.getElementById('checkout-popup');
-    if (!popup) {
-      popup = document.createElement('div');
-      popup.id = 'checkout-popup';
-      popup.innerHTML = '<div class="checkout-popup-card"><button class="checkout-popup-close">✕</button><div class="checkout-popup-text">Not Yet Available</div></div>';
-      document.body.appendChild(popup);
-      popup.addEventListener('click', () => {
-        popup.classList.add('hiding');
-        setTimeout(() => { popup.classList.add('hidden'); popup.classList.remove('hiding'); }, 350);
-      });
-    }
-    popup.classList.remove('hidden', 'hiding');
-  }
-
-  const checkoutBtn = document.querySelector('.checkout-btn');
-  if (checkoutBtn) {
-    checkoutBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      showCheckoutPopup();
-    });
-  }
-})();
