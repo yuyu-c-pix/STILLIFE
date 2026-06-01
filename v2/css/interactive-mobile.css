@@ -39,6 +39,17 @@
   .int-card-mobile:active { cursor: grabbing; }
   .int-card-mobile.dragging { z-index: 999; box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
 
+  .int-card-mobile .t-en {
+    font-family: "megascope-variable", sans-serif;
+    font-weight: 400;
+  }
+  .int-card-mobile .t-kr {
+    font-family: "Sandoll 60", sans-serif;
+    font-weight: 400;
+    letter-spacing: -0.1em;
+    line-height: 1.3;
+  }
+
   .int-card-mobile.size-sm { font-size: 20px; line-height: 1.25; }
   .int-card-mobile.size-lg { font-size: 28px; line-height: 1.2; }
 
@@ -253,7 +264,7 @@
     outline: none;
     color: #468DFF;
     -webkit-text-fill-color: #468DFF;
-    font-family: "megascope-variable", sans-serif;
+    font-family: "Sandoll 60", "megascope-variable", sans-serif;
     font-size: 34px;
     font-weight: 400;
     letter-spacing: 0.68px;

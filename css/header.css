@@ -306,3 +306,58 @@ body {
   transition: color 0.15s;
 }
 .cart-item-delete:hover { color: #FF437D; }
+
+/* ── Checkout popup ── */
+#checkout-popup {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.06);
+  cursor: default;
+  transition: opacity 0.35s ease;
+}
+#checkout-popup.hidden { display: none; }
+#checkout-popup.hiding { opacity: 0; pointer-events: none; }
+
+.checkout-popup-card {
+  position: relative;
+  background: #E0FCFF;
+  border: 2px dashed #222;
+  padding: 28px 52px 24px;
+  cursor: default;
+}
+
+.checkout-popup-close {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: "megascope-variable", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #468DFF;
+  line-height: 1;
+  padding: 0;
+}
+
+.checkout-popup-text {
+  color: #468DFF;
+  font-family: "megascope-variable", sans-serif;
+  font-size: 34px;
+  font-weight: 400;
+  letter-spacing: 0.68px;
+  text-align: center;
+  pointer-events: none;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .checkout-popup-card { padding: 24px 40px 20px; }
+  .checkout-popup-text { font-size: 28px; }
+}

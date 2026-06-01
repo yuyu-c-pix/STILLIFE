@@ -188,4 +188,5 @@
   background: #DFFCFA;
   overflow: hidden;
   padding-top: 159px;
-  box-sizin
+  box-sizing: border-box;
+}
