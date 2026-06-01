@@ -287,4 +287,13 @@
 
 /* 미디어 쿼리 밖 — 색상·폰트 보장 */
 .int-mobile-input {
-  color: rgba(7
+  color: rgba(70, 141, 255, 0.80) !important;
+  caret-color: rgba(70, 141, 255, 0.80) !important;
+  -webkit-text-fill-color: rgba(70, 141, 255, 0.80) !important;
+  font-family: "Sandoll 60", "megascope-variable", sans-serif !important;
+}
+
+/* 데스크탑에서 모바일 overlay 숨김 */
+@media (min-width: 769px) {
+  #nickname-overlay-mob { display: none; }
+}
