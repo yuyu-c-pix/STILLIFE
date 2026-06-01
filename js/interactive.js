@@ -109,12 +109,16 @@
     }
     inputEl.focus();
     setCaretToEnd(inputEl);
+    /* 타이핑 중 배경 카드 클릭/드래그 차단 */
+    document.querySelectorAll('.msg-card').forEach(function(c) { c.style.pointerEvents = 'none'; });
   }
 
   function deactivateInput() {
     placeholder.classList.remove('hidden');
     inputEl.classList.remove('active');
     inputEl.innerHTML = '';
+    /* 배경 카드 인터랙션 복원 */
+    document.querySelectorAll('.msg-card').forEach(function(c) { c.style.pointerEvents = ''; });
   }
 
   /* Click on Type Here area */
@@ -122,11 +126,15 @@
 
   /* Type ANYWHERE on the page activates input */
   document.addEventListener('keydown', (e) => {
-    if (e.target === inputEl) return;                  // already in input
-    if (e.metaKey || e.ctrlKey || e.altKey) return;    // ignore shortcuts
+    if (e.target === inputEl) return;
+    /* nick-input에 타이핑 중이거나 overlay가 열려 있으면 메인 input 건드리지 않음 */
+    if (e.target.id === 'nick-input') return;
+    const nickOverlay = document.getElementById('nickname-overlay');
+    if (nickOverlay && !nickOverlay.classList.contains('hidden')) return;
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
     if (e.key === 'Enter') { if (inputEl.classList.contains('active')) submitInput(); return; }
     if (e.key === 'Escape') { if (inputEl.classList.contains('active')) deactivateInput(); return; }
-    if (e.key.length === 1) {                          // printable character
+    if (e.key.length === 1) {
       activateInput(e.key);
       e.preventDefault();
     }
@@ -314,4 +322,166 @@
     }));
   }
 
+})();
+
+/* ══════════════════════════════════════════
+   C — 카드 슬라이드인 (페이지 로드 후 1.8s)
+══════════════════════════════════════════ */
+(function () {
+  /* 랜덤 카드를 오른쪽 바깥에서 슬라이드인 */
+  const _allCards = Array.from(document.querySelectorAll('.msg-card'));
+  if (!_allCards.length) return;
+  const target = _allCards[Math.floor(Math.random() * _allCards.length)];
+
+  target.style.transform = 'translateX(420px)';
+  target.style.opacity   = '0';
+
+  setTimeout(function () {
+    target.style.transition = 'transform 1.1s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.55s ease';
+    target.style.transform  = 'translateX(0)';
+    target.style.opacity    = '1';
+  }, 1800);
+})();
+
+/* ══════════════════════════════════════════
+   Nickname overlay + Custom cursor (desktop)
+══════════════════════════════════════════ */
+(function () {
+  if (window.innerWidth <= 768) return;
+
+  const STORAGE_KEY = 'stillife_nickname';
+  const BADGE_COLORS = ['#FF437D', '#53C948', '#FFB040', '#468DFF', '#5BE0EF'];
+
+  const overlay   = document.getElementById('nickname-overlay');
+  const nickInput = document.getElementById('nick-input');
+  const nickLabel = document.getElementById('nick-label');
+  const nickWrap  = document.getElementById('nick-type-wrap');
+  const cursorEl  = document.getElementById('user-cursor');
+  const badgeEl   = document.getElementById('user-badge');
+
+  function focusNickInput() {
+    if (nickLabel) nickLabel.classList.add('hidden');
+    nickInput.classList.add('active');
+    nickInput.focus();
+  }
+
+  function colorForName(name) {
+    let h = 0;
+    for (let i = 0; i < name.length; i++) h = (Math.imul(31, h) + name.charCodeAt(i)) | 0;
+    return BADGE_COLORS[Math.abs(h) % BADGE_COLORS.length];
+  }
+
+  const BADGE_TEXT = { '#FF437D': '#E0FCFF', '#53C948': '#FFB040', '#FFB040': '#53C948', '#468DFF': '#FF437D', '#5BE0EF': '#468DFF' };
+  const OX = 6.75, OY = 6.11;
+
+  function startCursor(name) {
+    const color = colorForName(name);
+    cursorEl.style.color = color;
+    badgeEl.style.background = color;
+    badgeEl.style.color = BADGE_TEXT[color] || '#fff';
+    badgeEl.textContent = name;
+    cursorEl.style.display = 'block';
+
+    document.addEventListener('mousemove', function (e) {
+      cursorEl.style.transform = 'translate(' + (e.clientX - OX) + 'px,' + (e.clientY - OY) + 'px)';
+    });
+
+    initLiveblocks(name, color);
+  }
+
+  function createOtherCursorEl(name, color) {
+    const textColor = BADGE_TEXT[color] || '#fff';
+    const el = document.createElement('div');
+    el.style.cssText = 'position:fixed;top:0;left:0;pointer-events:none;z-index:7999;display:none;color:' + color + ';will-change:transform';
+    el.innerHTML =
+      '<svg width="31" height="31" viewBox="0 0 33.966 33.9856" fill="none" overflow="visible">' +
+        '<path d="M7.40344 6.69426L31.2058 16.2577L32.4929 16.7747L31.1723 17.1974L20.5489 20.601L17.0597 31.1948L16.6261 32.512L16.1197 31.2207L6.75168 7.34069L6.32865 6.26241L7.40344 6.69426Z" fill="currentColor" stroke="black" stroke-width="1"/>' +
+        '<circle cx="25.5704" cy="25.3744" r="3.30908" fill="currentColor" stroke="black" stroke-width="1"/>' +
+      '</svg>' +
+      '<div style="position:absolute;top:40px;left:40px;padding:4px 8px;border:1px solid #000;' +
+        'font-family:megascope-variable,sans-serif;font-size:20px;font-weight:500;line-height:26px;' +
+        'letter-spacing:0.4px;white-space:nowrap;' +
+        'background:' + color + ';color:' + textColor + '">' + name + '</div>';
+    document.body.appendChild(el);
+    return el;
+  }
+
+  function initLiveblocks(name, color) {
+    const lb = window.Liveblocks;
+    if (!lb || !lb.createClient) return;
+    const client = lb.createClient({ publicApiKey: window.STILLIFE_LB_KEY });
+    let room;
+    try {
+      const res = client.enterRoom('stillife-interactive', {
+        initialPresence: { cursor: null, name: name, color: color, isMobile: false }
+      });
+      room = res.room || res;
+    } catch (e) { return; }
+
+    /* Broadcast own cursor as normalised viewport fraction */
+    document.addEventListener('mousemove', function (e) {
+      room.updatePresence({ cursor: { x: e.clientX / window.innerWidth, y: e.clientY / window.innerHeight } });
+    });
+    document.addEventListener('mouseleave', function () { room.updatePresence({ cursor: null }); });
+
+    /* Render / update / remove other users' cursors */
+    const otherCursors = {};
+    room.subscribe('others', function (others) {
+      const arr = others.toArray ? others.toArray() : (Array.isArray(others) ? others : []);
+      const activeIds = new Set(arr.map(function (o) { return o.connectionId; }));
+
+      arr.forEach(function (other) {
+        const p = other.presence;
+        if (!p || !p.name || p.isMobile) return;
+        const id = other.connectionId;
+        if (!otherCursors[id]) otherCursors[id] = createOtherCursorEl(p.name, p.color || '#468DFF');
+        const el = otherCursors[id];
+        if (!p.cursor) { el.style.display = 'none'; return; }
+        el.style.transform = 'translate(' + (p.cursor.x * window.innerWidth - OX) + 'px,' + (p.cursor.y * window.innerHeight - OY) + 'px)';
+        el.style.display = 'block';
+      });
+
+      Object.keys(otherCursors).forEach(function (id) {
+        if (!activeIds.has(Number(id))) { otherCursors[id].remove(); delete otherCursors[id]; }
+      });
+    });
+  }
+
+  function dismissOverlay(name) {
+    overlay.classList.add('hiding');
+    setTimeout(function () { overlay.classList.add('hidden'); }, 450);
+    startCursor(name);
+  }
+
+  function submitNick() {
+    const val = nickInput.value.trim();
+    if (!val) {
+      nickInput.style.borderBottomColor = '#FF437D';
+      nickInput.focus();
+      return;
+    }
+    localStorage.setItem(STORAGE_KEY, val);
+    dismissOverlay(val);
+  }
+
+  if (nickWrap) nickWrap.addEventListener('click', focusNickInput);
+
+  nickInput.addEventListener('blur', function () {
+    if (!nickInput.value.trim()) {
+      nickInput.classList.remove('active');
+      if (nickLabel) nickLabel.classList.remove('hidden');
+    }
+  });
+
+  const saved = localStorage.getItem(STORAGE_KEY);
+  if (saved) {
+    overlay.classList.add('hidden');
+    startCursor(saved);
+  } else {
+    nickInput.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') { e.preventDefault(); submitNick(); }
+      if (e.key !== 'Enter') nickInput.style.borderBottomColor = '';
+    });
+    setTimeout(focusNickInput, 200);
+  }
 })();

@@ -148,128 +148,49 @@
 
   </div>
 
-  <script>
-  (function () {
-    const COLORS = ['color-blue', 'color-green', 'color-orange', 'color-pink', 'color-white'];
-    const SIZES  = ['size-sm', 'size-lg'];
-    let colorIdx = 0;
-    let sizeIdx  = 0;
+  <!-- 닉네임 overlay — 모바일 전용 -->
+  <div id="nickname-overlay-mob">
+    <div class="nick-box-mob">
+      <div class="nick-prompt-mob">Who's writing?</div>
+      <input id="nick-input-mob" class="nick-input-mob" type="text" maxlength="20" autocomplete="off" spellcheck="false" placeholder="your name" enterkeyhint="go">
+    </div>
+  </div>
 
-    /* 헤더 높이만큼 초기 카드 위치 오프셋 */
+  <!-- 닉네임 입력 overlay (데스크탑 전용) -->
+  <div id="nickname-overlay">
+    <div class="nick-box">
+      <div class="nick-prompt">Who's writing?</div>
+      <div class="nick-type-wrap" id="nick-type-wrap">
+          <div class="nick-placeholder-label" id="nick-label">your name</div>
+          <input id="nick-input" class="nick-input" type="text" maxlength="20" autocomplete="off" spellcheck="false">
+        </div>
+    </div>
+  </div>
+
+  <!-- 커스텀 커서 (데스크탑 전용) — 피그마 정확한 shape -->
+  <div id="user-cursor">
+    <svg width="31" height="31" viewBox="0 0 33.966 33.9856" fill="none" xmlns="http://www.w3.org/2000/svg" overflow="visible">
+      <path d="M7.40344 6.69426L31.2058 16.2577L32.4929 16.7747L31.1723 17.1974L20.5489 20.601L17.0597 31.1948L16.6261 32.512L16.1197 31.2207L6.75168 7.34069L6.32865 6.26241L7.40344 6.69426Z" fill="currentColor" stroke="black" stroke-width="1"/>
+      <circle cx="25.5704" cy="25.3744" r="3.30908" transform="rotate(-25.1843 25.5704 25.3744)" fill="currentColor" stroke="black" stroke-width="1"/>
+    </svg>
+    <div id="user-badge"></div>
+  </div>
+
+  <script>
+  /* 모바일 전용: 헤더 높이 오프셋 (외부 JS보다 먼저 실행되어야 함) */
+  (function () {
+    if (window.innerWidth > 768) return;
     const headerH = document.getElementById('header')?.offsetHeight || 0;
-    document.querySelectorAll('.int-mobile-wrap .int-card-mobile').forEach(card => {
+    document.querySelectorAll('.int-mobile-wrap .int-card-mobile').forEach(function(card) {
       card.style.top = (parseInt(card.style.top) || 0) + headerH + 'px';
     });
-    const mainEl = document.querySelector('.int-mobile-main');
+    var mainEl = document.querySelector('.int-mobile-main');
     if (mainEl) mainEl.style.top = (530 + headerH) + 'px';
-
-    function getCenterZone() {
-      const main = document.querySelector('.int-mobile-main');
-      if (!main) return null;
-      const wrapRect = document.getElementById('int-mobile-wrap').getBoundingClientRect();
-      const mainRect = main.getBoundingClientRect();
-      return {
-        top:    mainRect.top    - wrapRect.top - 20,
-        bottom: mainRect.bottom - wrapRect.top + 20,
-      };
-    }
-
-    function createCard(text) {
-      const wrap  = document.getElementById('int-mobile-wrap');
-      const wrapH = wrap.scrollHeight;
-      const zone  = getCenterZone();
-      const cardH = 120;
-      const vw    = window.innerWidth;
-      let top;
-      for (let i = 0; i < 20; i++) {
-        top = Math.floor(Math.random() * (wrapH - cardH - 200)) + 100;
-        if (!zone || top + cardH < zone.top || top > zone.bottom) break;
-      }
-      const maxLeft = Math.max(10, vw - Math.floor(vw * 0.564) - 20);
-      const left    = Math.floor(Math.random() * maxLeft);
-      const card = document.createElement('div');
-      card.className = `int-card-mobile ${COLORS[colorIdx]} ${SIZES[sizeIdx]}`;
-      card.style.top  = top  + 'px';
-      card.style.left = left + 'px';
-      const now = new Date();
-      const dateStr = now.toLocaleDateString('en-US', { month:'2-digit', day:'2-digit', year:'numeric' })
-                    + ', ' + now.toLocaleTimeString('en-US', { hour:'2-digit', minute:'2-digit', second:'2-digit' });
-      card.textContent = dateStr + ', ' + text;
-      wrap.appendChild(card);
-      makeDraggable(card);
-      colorIdx = (colorIdx + 1) % COLORS.length;
-      sizeIdx  = (sizeIdx  + 1) % SIZES.length;
-    }
-
-    function makeDraggable(el) {
-      let startX, startY, origLeft, origTop;
-      function onStart(cx, cy) {
-        el.style.right = 'auto';
-        startX   = cx; startY = cy;
-        origLeft = parseInt(el.style.left) || el.getBoundingClientRect().left;
-        origTop  = parseInt(el.style.top)  || 0;
-        el.classList.add('dragging');
-      }
-      function onMove(cx, cy) {
-        el.style.left = (origLeft + cx - startX) + 'px';
-        el.style.top  = (origTop  + cy - startY) + 'px';
-      }
-      function onEnd() { el.classList.remove('dragging'); }
-      el.addEventListener('mousedown', e => {
-        onStart(e.clientX, e.clientY);
-        const mm = e2 => onMove(e2.clientX, e2.clientY);
-        const mu = () => { onEnd(); window.removeEventListener('mousemove', mm); window.removeEventListener('mouseup', mu); };
-        window.addEventListener('mousemove', mm);
-        window.addEventListener('mouseup', mu);
-      });
-      el.addEventListener('touchstart', e => { const t = e.touches[0]; onStart(t.clientX, t.clientY); }, { passive: true });
-      el.addEventListener('touchmove',  e => { e.preventDefault(); const t = e.touches[0]; onMove(t.clientX, t.clientY); }, { passive: false });
-      el.addEventListener('touchend', onEnd);
-    }
-
-    document.querySelectorAll('.int-card-mobile').forEach(makeDraggable);
-
-    /* 모바일 헤더 높이 오프셋은 CSS vw로 처리 */
-
-    const placeholder = document.getElementById('int-m-placeholder');
-    const input       = document.getElementById('int-m-input');
-
-    placeholder.addEventListener('click', () => {
-      placeholder.classList.add('hidden');
-      input.classList.add('active');
-      input.focus();
-    });
-
-    function submitCard() {
-      const val = input.value.trim();
-      if (val) createCard(val);
-      input.value = '';
-      input.blur();
-      input.classList.remove('active');
-      placeholder.classList.remove('hidden');
-    }
-
-    input.addEventListener('keydown', e => {
-      if (e.key === 'Enter') { e.preventDefault(); submitCard(); }
-    });
-    input.addEventListener('keyup', e => {
-      if (e.key === 'Enter') { e.preventDefault(); submitCard(); }
-    });
-
-    // iOS 대응
-    input.addEventListener('change', () => {
-      submitCard();
-    });
-    input.addEventListener('blur', () => {
-      if (!input.value.trim()) {
-        input.classList.remove('active');
-        placeholder.classList.remove('hidden');
-      }
-    });
-
   })();
   </script>
 
+  <script>window.STILLIFE_LB_KEY = 'pk_dev_2BH93Iz0Zfnd_9YMXvF9cpMmIfFeSZ7G60vf85fYXJAR07VtGD0z03uQ627d-KrH';</script>
+  <script src="https://cdn.jsdelivr.net/npm/@liveblocks/client@2/dist/liveblocks-client.umd.js"></script>
   <script src="../js/header.js"></script>
   <script src="../js/header-mobile.js"></script>
   <script src="../js/interactive.js"></script>

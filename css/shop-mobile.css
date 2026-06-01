@@ -13,7 +13,7 @@
     display: block;
     position: relative;
     width: 100vw;
-    min-height: 2000px;
+    min-height: calc(1780px + 32vw + 80px);
     background: #E0FCFF;
     overflow: hidden;
   }
@@ -184,9 +184,9 @@
   display: block;
   position: relative;
   width: 100vw;
-  min-height: 2100px;
+  min-height: calc(1780px + 32vw + 80px);
   background: #DFFCFA;
   overflow: hidden;
-  padding-top: 159px; /* ← 이거 추가 */
+  padding-top: 159px;
   box-sizing: border-box;
 }

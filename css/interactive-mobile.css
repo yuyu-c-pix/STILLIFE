@@ -80,7 +80,7 @@
     color: #468DFF;
     font-family: "megascope-variable", sans-serif;
     font-size: 36.5px;
-    font-weight: 400;
+    font-weight: 500;
     line-height: normal;
     letter-spacing: 0.73px;
     text-align: center;
@@ -136,8 +136,11 @@
     display: flex;
     align-items: center;
     gap: 2px;
+    /* 탭이 아래 input으로 전달되도록 */
+    pointer-events: none;
+    user-select: none;
   }
-  .int-mobile-placeholder.hidden { display: none; }
+  .int-mobile-placeholder.hidden { visibility: hidden; }
 
   .int-cursor-blink-m {
     animation: blink-m 1s step-end infinite;
@@ -148,9 +151,16 @@
     50%       { opacity: 0; }
   }
 
+  /* input — 항상 DOM에 존재, opacity로만 가시성 제어 */
+  .int-mobile-input-wrap {
+    position: relative;
+  }
+
   .int-mobile-input {
+    position: absolute;
+    inset: 0;
     width: 100%;
-    min-height: 44px;
+    min-height: 50px;
     outline: none;
     border: none;
     background: transparent;
@@ -161,28 +171,117 @@
     letter-spacing: 0.68px;
     text-align: center;
     caret-color: rgba(70, 141, 255, 0.8);
-    display: none;
+    opacity: 0;
+    display: block;
+    z-index: 1;
+    pointer-events: all;
   }
-  .int-mobile-input.active { display: block; }
+  .int-mobile-input.active {
+    opacity: 1;
+  }
 
+  /* ── Presence dots (A) ── */
+  .presence-mob {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    pointer-events: none;
+    z-index: 5;
+  }
+  .presence-mob-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 1px solid #000;
+    flex-shrink: 0;
+  }
+  .presence-mob-name {
+    padding: 2px 7px;
+    border: 1px solid #000;
+    font-family: "megascope-variable", sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+  }
 
+  /* ── Mobile nickname overlay ── */
+  #nickname-overlay-mob {
+    display: flex;
+    position: fixed;
+    inset: 0;
+    z-index: 9000;
+    align-items: center;
+    justify-content: center;
+    background: rgba(224, 252, 255, 0.82);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: opacity 0.45s ease;
+    overflow: hidden;
+    overscroll-behavior: none;
+    touch-action: manipulation;
+  }
+  #nickname-overlay-mob.hiding {
+    opacity: 0;
+    pointer-events: none;
+  }
+  #nickname-overlay-mob.hidden { display: none !important; }
+
+  .nick-box-mob {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .nick-prompt-mob {
+    color: #468DFF;
+    font-family: "megascope-variable", sans-serif;
+    font-size: 36px;
+    font-weight: 400;
+    letter-spacing: 0.72px;
+    text-align: center;
+    line-height: normal;
+  }
+
+  .nick-input-mob {
+    display: block;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #468DFF;
+    -webkit-text-fill-color: #468DFF;
+    font-family: "megascope-variable", sans-serif;
+    font-size: 34px;
+    font-weight: 400;
+    letter-spacing: 0.68px;
+    text-align: center;
+    width: 240px;
+    padding: 8px 0 6px;
+    caret-color: #468DFF;
+    touch-action: manipulation;
+    text-decoration: underline;
+    text-underline-offset: 6px;
+    -webkit-text-decoration: underline;
+  }
+  .nick-input-mob::placeholder {
+    color: rgba(70, 141, 255, 0.50);
+    -webkit-text-fill-color: rgba(70, 141, 255, 0.50);
+    font-weight: 400;
+  }
 
 } /* end @media */
 
-/* 미디어 쿼리 밖 — DevTools 등 환경에서도 색상 보장 */
+/* 미디어 쿼리 밖 — 색상 보장 */
 .int-mobile-input {
   color: rgba(70, 141, 255, 0.80) !important;
   caret-color: rgba(70, 141, 255, 0.80) !important;
   -webkit-text-fill-color: rgba(70, 141, 255, 0.80) !important;
 }
 
-/* 미디어 쿼리 밖 — input 기본 크기 보장 */
-.int-mobile-input {
-  width: 100%;
-  min-height: 44px;
-  font-size: 34px;
-  display: none;
-}
-.int-mobile-input.active {
-  display: block;
+/* 데스크탑에서 모바일 overlay 숨김 */
+@media (min-width: 769px) {
+  #nickname-overlay-mob { display: none; }
 }
