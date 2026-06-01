@@ -210,7 +210,7 @@
   .presence-mob-name {
     padding: 2px 7px;
     border: 1px solid #000;
-    font-family: "megascope-variable", sans-serif;
+    font-family: "Sandoll 60", "megascope-variable", sans-serif;
     font-size: 13px;
     font-weight: 500;
     line-height: 20px;
@@ -226,7 +226,7 @@
     z-index: 9000;
     align-items: center;
     justify-content: center;
-    background: rgba(255, 255, 255, 0.88);
+    background: rgba(224, 252, 255, 0.82);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     transition: opacity 0.45s ease;

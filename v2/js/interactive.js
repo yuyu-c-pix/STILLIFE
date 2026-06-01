@@ -399,7 +399,7 @@
         '<circle cx="25.5704" cy="25.3744" r="3.30908" fill="currentColor" stroke="black" stroke-width="1"/>' +
       '</svg>' +
       '<div style="position:absolute;top:40px;left:40px;padding:4px 8px;border:1px solid #000;' +
-        'font-family:megascope-variable,sans-serif;font-size:20px;font-weight:500;line-height:26px;' +
+        'font-family:\'Sandoll 60\',megascope-variable,sans-serif;font-size:20px;font-weight:500;line-height:26px;' +
         'letter-spacing:0.4px;white-space:nowrap;' +
         'background:' + color + ';color:' + textColor + '">' + name + '</div>';
     document.body.appendChild(el);

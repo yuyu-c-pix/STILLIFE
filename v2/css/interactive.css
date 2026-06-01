@@ -202,7 +202,7 @@ html, body { background: #DFFCFA; overflow: hidden; }
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.88);
+  background: rgba(224, 252, 255, 0.82);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   transition: opacity 0.45s ease;
@@ -290,7 +290,7 @@ html, body { background: #DFFCFA; overflow: hidden; }
   left: 40px;
   padding: 4px 8px;
   border: 1px solid #000;
-  font-family: "megascope-variable", sans-serif;
+  font-family: "Sandoll 60", "megascope-variable", sans-serif;
   font-size: 20px;
   font-weight: 500;
   line-height: 26px;
