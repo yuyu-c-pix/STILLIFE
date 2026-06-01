@@ -163,24 +163,4 @@
       const info = document.createElement('div');
       info.className = 'mobile-cart-item-info';
       info.innerHTML = `
-        <div class="mobile-cart-item-name">${item.name}</div>
-        <div class="mobile-cart-item-meta-group">
-          <div class="mobile-cart-item-meta">Price: ${item.price || '—'}</div>
-          <div class="mobile-cart-item-meta">Quantity: ${item.quantity}</div>
-        </div>
-      `;
-
-      card.appendChild(img);
-      card.appendChild(deleteBtn);
-      card.appendChild(info);
-      cartList.appendChild(card);
-    });
-  }
-
-  /* cart:updated 이벤트 수신 */
-  window.addEventListener('cart:updated', renderMobileCart);
-
-  /* openCart 전역 노출 */
-  window.openMobileCart = openCart;
-
-})();
+        <div class="mobile-cart-item
