@@ -341,7 +341,7 @@
       target.style.transition = 'transform 1.1s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.55s ease';
       target.style.transform  = 'translateX(0)';
       target.style.opacity    = '1';
-    }, 1800 + i * 380);
+    }, 1800 + i * 800);
   });
 })();
 

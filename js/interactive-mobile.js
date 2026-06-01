@@ -310,7 +310,7 @@
       setTimeout(function () {
         target.style.transition = 'transform 0.95s cubic-bezier(0.22, 1, 0.36, 1)';
         target.style.transform  = 'translateX(0)';
-      }, 2200 + i * 400);
+      }, 2200 + i * 800);
     });
   }
 
