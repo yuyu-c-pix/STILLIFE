@@ -165,7 +165,7 @@
     border: none;
     background: transparent;
     color: rgba(70, 141, 255, 0.80);
-    font-family: -apple-system, "megascope-variable", sans-serif;
+    font-family: "Sandoll 60", "megascope-variable", sans-serif;
     font-size: 34px;
     font-weight: 400;
     letter-spacing: 0.68px;
@@ -274,11 +274,12 @@
 
 } /* end @media */
 
-/* 미디어 쿼리 밖 — 색상 보장 */
+/* 미디어 쿼리 밖 — 색상·폰트 보장 */
 .int-mobile-input {
   color: rgba(70, 141, 255, 0.80) !important;
   caret-color: rgba(70, 141, 255, 0.80) !important;
   -webkit-text-fill-color: rgba(70, 141, 255, 0.80) !important;
+  font-family: "Sandoll 60", "megascope-variable", sans-serif !important;
 }
 
 /* 데스크탑에서 모바일 overlay 숨김 */
