@@ -1,0 +1,154 @@
+/* ─────────────────────────────────────────
+   css/archive-mobile.css — Still Life Archive Mobile
+───────────────────────────────────────── */
+
+.archive-mobile-wrap { display: none; }
+
+@media (max-width: 768px) {
+
+  html, body { overflow: auto !important; }
+  #page-wrapper { display: none; }
+
+  .archive-mobile-wrap {
+    display: block;
+    width: 100%;
+    background: #E0FCFF;
+    padding-top: 159px;
+    padding-bottom: 40px;
+    box-sizing: border-box;
+  }
+
+  .archive-mobile-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 0 13px;
+    box-sizing: border-box;
+  }
+
+  /* ── 카드 공통 ── */
+  .card-detail-mobile {
+    width: 100%;
+    background: #F3F4F8;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px;
+    gap: 24px;
+    box-sizing: border-box;
+    border: 2px dashed #000;
+  }
+
+  .detail-title {
+    font-family: "megascope-variable", sans-serif;
+    font-size: 36.5px;
+    font-weight: 470;
+    letter-spacing: 0.73px;
+    line-height: 1.1;
+    color: #53C948;
+  }
+
+  .detail-image {
+    width: calc(100% - 0px);
+    height: calc((100vw - 56px) * 472 / 334);
+    overflow: hidden;
+    align-self: flex-start;
+    flex-shrink: 0;
+  }
+  .detail-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .detail-subtitle {
+    font-family: "megascope-variable", sans-serif;
+    font-size: 36px;
+    font-weight: 400;
+    letter-spacing: 0.72px;
+    line-height: 35px;
+    color: #53C948;
+  }
+
+  .detail-desc {
+    font-family: "megascope-variable", sans-serif;
+    font-size: 32px;
+    font-weight: 400;
+    letter-spacing: 0.72px;
+    line-height: 33px;
+    color: #53C948;
+    max-width: 305px;
+  }
+
+  .desc-ko {
+    display: block;
+    font-family: "Sandoll 60", sans-serif;
+    font-size: 27px;
+    color: #53C948;
+    letter-spacing: -2.835px;
+    margin-top: 8px;
+    line-height: 33px;
+  }
+
+  .detail-btn {
+    width: 182px;
+    height: 55px;
+    background: #FF437D;
+    color: #fff;
+    font-family: "megascope-variable", sans-serif;
+    font-size: 36px;
+    font-weight: 400;
+    letter-spacing: 0.72px;
+    border-radius: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 5px; /* 텍스트 살짝 위로 */
+    cursor: pointer;
+    transition: color 0.2s;
+    text-decoration: none;
+    border: none;
+  }
+  .detail-btn.active { color: #53C948; }
+
+  /* ── 블록별 색상 테마 ── */
+
+  /* Block 2: 배경 핑크, 글씨 주황, 버튼 하늘 */
+  .card-detail-mobile.block-2 { background: #FF437D; }
+  .card-detail-mobile.block-2 .detail-title,
+  .card-detail-mobile.block-2 .detail-subtitle,
+  .card-detail-mobile.block-2 .detail-desc { color: #FFB040; }
+  .card-detail-mobile.block-2 .desc-ko { color: #FFB040; }
+  .card-detail-mobile.block-2 .detail-btn { background: #5BE0EF; color: #FFF; }
+  .card-detail-mobile.block-2 .detail-btn.active { color: #FFB040; }
+
+  /* Block 3: 배경 주황, 글씨 파란, 버튼 회색, 버튼글자 초록 */
+  .card-detail-mobile.block-3 { background: #FFB040; }
+  .card-detail-mobile.block-3 .detail-title,
+  .card-detail-mobile.block-3 .detail-subtitle,
+  .card-detail-mobile.block-3 .detail-desc { color: #468DFF; }
+  .card-detail-mobile.block-3 .desc-ko { color: #468DFF; }
+  .card-detail-mobile.block-3 .detail-btn { background: #F3F4F8; color: #53C948; }
+  .card-detail-mobile.block-3 .detail-btn.active { color: #468DFF; }
+
+  /* Block 4: 배경 하늘, 글씨 핑크, 버튼 파란 */
+  .card-detail-mobile.block-4 { background: #5BE0EF; }
+  .card-detail-mobile.block-4 .detail-title,
+  .card-detail-mobile.block-4 .detail-subtitle,
+  .card-detail-mobile.block-4 .detail-desc { color: #FF437D; }
+  .card-detail-mobile.block-4 .desc-ko { color: #FF437D; }
+  .card-detail-mobile.block-4 .detail-btn { background: #468DFF; color: #FFF; }
+  .card-detail-mobile.block-4 .detail-btn.active { color: #FF437D; }
+
+  /* Block 5: 배경 초록, 글씨 주황, 버튼 핑크 */
+  .card-detail-mobile.block-5 { background: #53C948; }
+  .card-detail-mobile.block-5 .detail-title,
+  .card-detail-mobile.block-5 .detail-subtitle,
+  .card-detail-mobile.block-5 .detail-desc { color: #FFB040; }
+  .card-detail-mobile.block-5 .desc-ko { color: #FFB040; }
+  .card-detail-mobile.block-5 .detail-btn { background: #FF437D; color: #FFF; }
+  .card-detail-mobile.block-5 .detail-btn.active { color: #FFB040; }
+
+} /* end @media */

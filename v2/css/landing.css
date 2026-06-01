@@ -1,0 +1,41 @@
+/* 랜딩 페이지 전용 스타일 */
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: transparent;
+  width: 100%;
+  height: 100%;
+}
+
+/* 공통 video 스타일 */
+#landing-video-desktop,
+#landing-video-mobile {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  transition: opacity 1s ease;
+  display: block;
+}
+
+/* 모바일용은 기본 숨김 */
+#landing-video-mobile {
+  display: none;
+}
+
+/* 모바일일 때만 mobile 비디오 표시 */
+@media screen and (max-width: 768px) {
+  #landing-video-desktop {
+    display: none;
+  }
+
+  #landing-video-mobile {
+    display: block;
+  }
+}
+
+/* 페이드아웃 효과 */
+.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}

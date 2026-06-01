@@ -1,0 +1,317 @@
+/* ─────────────────────────────────────────
+   css/header-mobile.css  —  Still Life Mobile
+   @media (max-width: 768px) 전용
+───────────────────────────────────────── */
+
+/* 모바일 요소 기본 숨김 (데스크탑에서 안 보이게) */
+.mobile-header,
+.mobile-menu-overlay,
+.mobile-cart-overlay {
+  display: none;
+}
+
+@media (max-width: 768px) {
+
+  /* 모바일 요소 표시 */
+  .mobile-header { display: block; }
+  .mobile-menu-overlay,
+  .mobile-cart-overlay { display: flex; }
+  #header, #nav-bar, #symbol-wrap, #cart-overlay {
+    display: none !important;
+  }
+
+  /* ══════════════════════════════════════════
+     Mobile Header
+  ══════════════════════════════════════════ */
+  .mobile-header {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    height: 120px;
+    z-index: 1000;
+    background: transparent;
+    box-sizing: border-box;
+  }
+
+  .logo-block {
+    position: absolute;
+    top: 35.1px;
+    left: 29px;
+    display: flex;
+    align-items: flex-start;
+    gap: 5px;
+    cursor: pointer;
+  }
+  .logo-icon {
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+  .logo-text {
+    display: block;
+    width: 140px;
+    height: 45px;
+    object-fit: contain;
+    margin-top: 10px; /* 45.1 - 35.1 */
+  }
+
+  .mobile-header-buttons {
+    position: absolute;
+    top: 25.3px;
+    right: 24.8px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.7px;
+  }
+  .mobile-header-btn {
+    width: 90.5px;
+    height: 40.8px;
+    background: #FFE3B0;
+    color: #222;
+    font-family: "megascope-variable", sans-serif;
+    font-size: 34px;
+    font-weight: 370;
+    letter-spacing: 0.68px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 6px;
+  }
+  .mobile-header-btn.active {
+    background: #53C948;
+    color: #fff;
+  }
+
+  /* ══════════════════════════════════════════
+     Menu Overlay — slides down from top
+  ══════════════════════════════════════════ */
+  .mobile-menu-overlay {
+    position: fixed;
+    inset: 0;
+    background: #53C948;
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(-100%);
+    transition: transform 0.4s cubic-bezier(.4,0,.2,1);
+  }
+  .mobile-menu-overlay.open {
+    transform: translateY(0);
+  }
+
+  .mobile-menu-close {
+    position: absolute;
+    top: 28px;
+    right: 24px;
+    background: none;
+    border: none;
+    font-size: 32px;
+    color: #000;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.15s;
+    font-family: "megascope-variable", sans-serif;
+  }
+  .mobile-menu-close:active { color: #fff; }
+
+  .mobile-menu-box {
+    background: #FFE3B0;
+    border: 2px dashed #222;
+    padding: 40px 32px;
+    min-width: 280px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    box-sizing: border-box;
+  }
+  .mobile-menu-item {
+    font-family: "megascope-variable", sans-serif;
+    font-size: 32px;
+    font-weight: 400;
+    color: #222;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+    transition: color 0.15s;
+    letter-spacing: 0.68px;
+  }
+  .mobile-menu-item:active,
+  .mobile-menu-item.pressed { color: #53C948; }
+
+  /* ══════════════════════════════════════════
+     Cart Overlay — slides up from bottom
+  ══════════════════════════════════════════ */
+  .mobile-cart-overlay {
+    position: fixed;
+    inset: 0;
+    background: #53C948;
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(100%);
+    transition: transform 0.4s cubic-bezier(.4,0,.2,1);
+  }
+  .mobile-cart-overlay.open {
+    transform: translateY(0);
+  }
+
+  .mobile-cart-close {
+    position: absolute;
+    top: 28px;
+    right: 24px;
+    background: none;
+    border: none;
+    font-size: 32px;
+    color: #000;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.15s;
+    font-family: "megascope-variable", sans-serif;
+  }
+  .mobile-cart-close:active { color: #fff; }
+
+  .mobile-cart-box {
+    background: #FFE3B0;
+    border: 2px dashed #222;
+    padding: 32px 24px;
+    width: calc(100vw - 48px);
+    max-width: 360px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+  }
+  .mobile-cart-title {
+    font-family: "megascope-variable", sans-serif;
+    font-size: 34px;
+    font-weight: 400;
+    color: #222;
+    text-align: center;
+    margin-bottom: 20px;
+    letter-spacing: 0.68px;
+  }
+
+  /* 카트 아이템 목록 */
+  .mobile-cart-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-height: calc(3 * 160px + 2 * 12px);
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #ccc transparent;
+    margin-bottom: 15px;
+  }
+
+  /* 빈 카트 */
+  .mobile-cart-empty {
+    width: 100%;
+    height: 130px;
+    background: #DFFCFA;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  .mobile-cart-empty-text {
+    font-family: "megascope-variable", sans-serif;
+    font-size: 20px;
+    color: #222;
+    text-align: center;
+  }
+
+  /* 각 카트 아이템 */
+  .mobile-cart-item {
+    width: 100%;
+    height: 160px;
+    background: #D9D9D9;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  .mobile-cart-item-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    z-index: 1;
+  }
+  .mobile-cart-item-info {
+    position: absolute;
+    bottom: 14px;
+    left: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    z-index: 2;
+  }
+  .mobile-cart-item-name {
+    font-family: "megascope-variable", sans-serif;
+    font-size: 34px;
+    color: #000;
+    line-height: 1;
+    font-weight: 400;
+  }
+  .mobile-cart-item-meta-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+  }
+  .mobile-cart-item-meta {
+    font-family: "megascope-variable", sans-serif;
+    font-size: 20px;
+    color: #000;
+    line-height: 1;
+    font-weight: 400;
+  }
+  /* 삭제 버튼 */
+  .mobile-cart-item-delete {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: #000;
+    cursor: pointer;
+    font-family: "megascope-variable", sans-serif;
+    transition: color 0.15s;
+    line-height: 1;
+    z-index: 1;
+  }
+  .mobile-cart-item-delete:active { color: #FF437D; }
+
+  /* Check Out 버튼 */
+  .mobile-checkout-btn {
+    margin-top: 4px;
+    background: #53C948;
+    color: #222;
+    font-family: "megascope-variable", sans-serif;
+    font-size: 34px;
+    font-weight: 400;
+    border: none;
+    padding: 4px 12px 9px;
+    cursor: pointer;
+    transition: background 0.15s;
+    width: auto;
+    display: inline-block;
+    box-sizing: border-box;
+    letter-spacing: 0.68px;
+  }
+  .mobile-checkout-btn.checked {
+    background: #fff;
+  }
+
+} /* end @media */

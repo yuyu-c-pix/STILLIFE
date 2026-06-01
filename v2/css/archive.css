@@ -1,0 +1,199 @@
+/* ─────────────────────────────────────────
+   css/archive.css
+   Archive page — Still Life
+───────────────────────────────────────── */
+
+/* ── Reset & Base ── */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  background-color: #E0FCFF;
+}
+
+/* ── Page Wrapper (1920px 고정, JS zoom으로 축소) ── */
+#page-wrapper {
+  width: 1920px;
+  background-color: #E0FCFF;
+}
+
+/* ── Archive Main ── */
+#archive-main {
+  /* first block top = 244px from page top */
+  padding-top: 244px;
+  padding-bottom: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 60px;           /* 60px 간격 between blocks */
+}
+
+/* ── Archive Block ── */
+.archive-block {
+  display: flex;
+  flex-direction: row;           /* image LEFT, text RIGHT */
+  width: 1075.563px;
+  min-height: 592px;             /* 콘텐츠 넘쳐도 늘어남 */
+  padding: 31px 96px 30px 29px;
+  align-items: flex-start;
+  gap: 28px;                     /* image ↔ text gap */
+  border: 2px dashed #000;
+  background: #FFF;
+  flex-shrink: 0;
+}
+
+/* ── Poster Image ── */
+.block-image {
+  width: 375px;
+  height: 530px;
+  background-color: lightgray;
+  background-position: 50% 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  flex-shrink: 0;
+}
+
+/* ── Text Block ── */
+.block-text {
+  display: flex;
+  width: 548px;
+  height: 530px;               /* 이미지 높이와 동일 → 상하 정렬 기준 */
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between; /* title 상단 고정, button 하단 고정 */
+}
+
+/* ── Text Top (title + subtitle + body 묶음) ── */
+.text-top {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 43px;
+}
+
+/* Title — 64px */
+.poster-title {
+  color: #53C948;
+  font-family: "megascope-variable", sans-serif;
+  font-size: 64px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 1.28px;
+  white-space: nowrap;
+  margin-top: -6px; /* 폰트 ascender 공백 보정 */
+}
+
+/* Subtitle — 36px */
+.poster-subtitle {
+  color: #53C948;
+  font-family: "megascope-variable", sans-serif;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 35px;
+  letter-spacing: 0.72px;
+}
+
+/* Body Container */
+.poster-body {
+  width: 419.802px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* English body text */
+.body-en {
+  display: block;
+  color: #53C948;
+  font-family: "megascope-variable", sans-serif;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 35px;
+  letter-spacing: 0.72px;
+}
+
+/* Korean body text */
+.body-kr {
+  display: block;
+  color: #53C948;
+  font-family: "Sandoll 60", sans-serif;
+  font-size: 31px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 36px;
+  letter-spacing: -3.255px;
+}
+
+/* ── Get the Message Button ── */
+.get-message-btn {
+  display: flex;
+  width: fit-content;
+  white-space: nowrap;
+  height: 55.325px;
+  padding: 7px 16px 13px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  background: #FF437D;
+  color: #FFF;
+  font-family: "megascope-variable", sans-serif;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.72px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  flex-shrink: 0;
+}
+
+.get-message-btn:hover {
+  color: #53C948;
+}
+
+/* ══════════════════════════════════════════
+   블럭별 색상 테마
+══════════════════════════════════════════ */
+
+/* Block 2 : 배경 핑크 / 글씨 주황 / 버튼 하늘 / 버튼글자 흰 */
+.block-2 { background: #FF437D; }
+.block-2 .poster-title,
+.block-2 .poster-subtitle,
+.block-2 .body-en,
+.block-2 .body-kr  { color: #FFB040; }
+.block-2 .get-message-btn { background: #5BE0EF; color: #FFF; }
+.block-2 .get-message-btn:hover { color: #FFB040; }
+
+/* Block 3 : 배경 주황 / 글씨 파란 / 버튼 회색 / 버튼글자 초록 */
+.block-3 { background: #FFB040; }
+.block-3 .poster-title,
+.block-3 .poster-subtitle,
+.block-3 .body-en,
+.block-3 .body-kr  { color: #468DFF; }
+.block-3 .get-message-btn { background: #F3F4F8; color: #53C948; }
+.block-3 .get-message-btn:hover { color: #468DFF; }
+
+/* Block 4 : 배경 하늘 / 글자 형광핑크 / 버튼 파란 / 버튼글자 흰 */
+.block-4 { background: #5BE0EF; }
+.block-4 .poster-title,
+.block-4 .poster-subtitle,
+.block-4 .body-en,
+.block-4 .body-kr  { color: #FF437D; }
+.block-4 .get-message-btn { background: #468DFF; color: #FFF; }
+.block-4 .get-message-btn:hover { color: #FF437D; }
+
+/* Block 5 : 배경 초록 / 글자 주황 / 버튼 형광핑크 / 버튼글자 흰 */
+.block-5 { background: #53C948; }
+.block-5 .poster-title,
+.block-5 .poster-subtitle,
+.block-5 .body-en,
+.block-5 .body-kr  { color: #FFB040; }
+.block-5 .get-message-btn { background: #FF437D; color: #FFF; }
+.block-5 .get-message-btn:hover { color: #FFB040; }

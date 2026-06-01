@@ -191,3 +191,126 @@ html, body { background: #DFFCFA; overflow: hidden; }
 
 /* Outline-only (no background fill) */
 .card-outline { background: transparent !important; }
+
+/* ══════════════════════════════════════════
+   Nickname overlay (desktop only)
+══════════════════════════════════════════ */
+#nickname-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(224, 252, 255, 0.82);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: opacity 0.45s ease;
+}
+#nickname-overlay.hiding {
+  opacity: 0;
+  pointer-events: none;
+}
+#nickname-overlay.hidden { display: none; }
+
+.nick-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+}
+
+.nick-type-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  cursor: text;
+}
+
+.nick-placeholder-label {
+  color: rgba(70, 141, 255, 0.50);
+  font-family: "megascope-variable", sans-serif;
+  font-size: 34px;
+  font-weight: 400;
+  letter-spacing: 0.68px;
+  text-decoration: underline;
+  text-underline-offset: 8px;
+  cursor: text;
+}
+.nick-placeholder-label.hidden { display: none; }
+
+.nick-prompt {
+  color: #468DFF;
+  font-family: "megascope-variable", sans-serif;
+  font-size: 64px;
+  font-weight: 400;
+  letter-spacing: 1.28px;
+  text-align: center;
+  line-height: normal;
+}
+
+.nick-input {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid rgba(70, 141, 255, 0.4);
+  outline: none;
+  color: #468DFF;
+  font-family: "megascope-variable", sans-serif;
+  font-size: 34px;
+  font-weight: 400;
+  letter-spacing: 0.68px;
+  text-align: center;
+  width: 300px;
+  padding: 8px 0 6px;
+  caret-color: #468DFF;
+  transition: border-color 0.2s;
+  display: none;
+}
+.nick-input.active { display: block; }
+.nick-input:focus { border-bottom-color: #468DFF; }
+.nick-input::placeholder { color: rgba(70, 141, 255, 0.28); font-weight: 500; }
+
+/* ══════════════════════════════════════════
+   Custom cursor (desktop only)
+══════════════════════════════════════════ */
+#user-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 8000;
+  display: none;
+  will-change: transform;
+}
+
+#user-badge {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  padding: 4px 8px;
+  border: 1px solid #000;
+  font-family: "megascope-variable", sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 26px;
+  letter-spacing: 0.4px;
+  white-space: nowrap;
+  color: #fff;
+}
+
+/* 데스크탑에서 기본 커서 숨기기 (커스텀 커서로 대체) */
+@media (min-width: 769px) {
+  #page-wrapper { cursor: none; }
+  #page-wrapper * { cursor: none !important; }
+  /* overlay 위에서는 기본 커서 유지 */
+  #nickname-overlay,
+  #nickname-overlay * { cursor: default !important; }
+  .nick-input { cursor: text !important; }
+}
+
+/* 모바일에서는 overlay·커서 완전 숨김 */
+@media (max-width: 768px) {
+  #nickname-overlay { display: none !important; }
+  #user-cursor { display: none !important; }
+}
