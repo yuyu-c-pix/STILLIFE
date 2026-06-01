@@ -256,7 +256,7 @@ html, body { background: #DFFCFA; overflow: hidden; }
   border-bottom: 2px solid rgba(70, 141, 255, 0.4);
   outline: none;
   color: #468DFF;
-  font-family: "Sandoll 60", "megascope-variable", sans-serif;
+  font-family: "megascope-variable", sans-serif;
   font-size: 34px;
   font-weight: 400;
   letter-spacing: 0.68px;
@@ -268,6 +268,7 @@ html, body { background: #DFFCFA; overflow: hidden; }
   display: none;
 }
 .nick-input.active { display: block; }
+.nick-input.kr-font { font-family: "Sandoll 60", "megascope-variable", sans-serif; }
 .nick-input:focus { border-bottom-color: #468DFF; }
 .nick-input::placeholder { color: rgba(70, 141, 255, 0.28); font-weight: 500; }
 
@@ -290,7 +291,7 @@ html, body { background: #DFFCFA; overflow: hidden; }
   left: 40px;
   padding: 4px 8px;
   border: 1px solid #000;
-  font-family: "Sandoll 60", "megascope-variable", sans-serif;
+  font-family: "megascope-variable", sans-serif;
   font-size: 20px;
   font-weight: 500;
   line-height: 26px;

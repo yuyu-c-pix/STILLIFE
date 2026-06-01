@@ -210,7 +210,7 @@
   .presence-mob-name {
     padding: 2px 7px;
     border: 1px solid #000;
-    font-family: "Sandoll 60", "megascope-variable", sans-serif;
+    font-family: "megascope-variable", sans-serif;
     font-size: 13px;
     font-weight: 500;
     line-height: 20px;
@@ -264,7 +264,7 @@
     outline: none;
     color: #468DFF;
     -webkit-text-fill-color: #468DFF;
-    font-family: "Sandoll 60", "megascope-variable", sans-serif;
+    font-family: "megascope-variable", sans-serif;
     font-size: 34px;
     font-weight: 400;
     letter-spacing: 0.68px;
@@ -290,7 +290,13 @@
   color: rgba(70, 141, 255, 0.80) !important;
   caret-color: rgba(70, 141, 255, 0.80) !important;
   -webkit-text-fill-color: rgba(70, 141, 255, 0.80) !important;
+  font-family: "megascope-variable", sans-serif !important;
+}
+.int-mobile-input.kr-font {
   font-family: "Sandoll 60", "megascope-variable", sans-serif !important;
+}
+.nick-input-mob.kr-font {
+  font-family: "Sandoll 60", "megascope-variable", sans-serif;
 }
 
 /* 데스크탑에서 모바일 overlay 숨김 */

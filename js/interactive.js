@@ -328,19 +328,21 @@
    C — 카드 슬라이드인 (페이지 로드 후 1.8s)
 ══════════════════════════════════════════ */
 (function () {
-  /* 랜덤 카드를 오른쪽 바깥에서 슬라이드인 */
+  /* 랜덤 카드 2개를 오른쪽 바깥에서 슬라이드인 */
   const _allCards = Array.from(document.querySelectorAll('.msg-card'));
   if (!_allCards.length) return;
-  const target = _allCards[Math.floor(Math.random() * _allCards.length)];
+  const shuffled = _allCards.slice().sort(function () { return Math.random() - 0.5; });
+  const targets  = shuffled.slice(0, Math.min(2, shuffled.length));
 
-  target.style.transform = 'translateX(420px)';
-  target.style.opacity   = '0';
-
-  setTimeout(function () {
-    target.style.transition = 'transform 1.1s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.55s ease';
-    target.style.transform  = 'translateX(0)';
-    target.style.opacity    = '1';
-  }, 1800);
+  targets.forEach(function (target, i) {
+    target.style.transform = 'translateX(420px)';
+    target.style.opacity   = '0';
+    setTimeout(function () {
+      target.style.transition = 'transform 1.1s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.55s ease';
+      target.style.transform  = 'translateX(0)';
+      target.style.opacity    = '1';
+    }, 1800 + i * 380);
+  });
 })();
 
 /* ══════════════════════════════════════════
@@ -351,6 +353,15 @@
 
   const STORAGE_KEY = 'stillife_nickname';
   const BADGE_COLORS = ['#FF437D', '#53C948', '#FFB040', '#468DFF', '#5BE0EF'];
+
+  function hasKorean(str) {
+    return /[가-힣ᄀ-ᇿ㄰-㆏]/.test(str);
+  }
+  function badgeFont(name) {
+    return hasKorean(name)
+      ? '"Sandoll 60","megascope-variable",sans-serif'
+      : '"megascope-variable",sans-serif';
+  }
 
   const overlay   = document.getElementById('nickname-overlay');
   const nickInput = document.getElementById('nick-input');
@@ -380,6 +391,7 @@
     badgeEl.style.background = color;
     badgeEl.style.color = BADGE_TEXT[color] || '#fff';
     badgeEl.textContent = name;
+    badgeEl.style.fontFamily = badgeFont(name);
     cursorEl.style.display = 'block';
 
     document.addEventListener('mousemove', function (e) {
@@ -399,7 +411,7 @@
         '<circle cx="25.5704" cy="25.3744" r="3.30908" fill="currentColor" stroke="black" stroke-width="1"/>' +
       '</svg>' +
       '<div style="position:absolute;top:40px;left:40px;padding:4px 8px;border:1px solid #000;' +
-        'font-family:\'Sandoll 60\',megascope-variable,sans-serif;font-size:20px;font-weight:500;line-height:26px;' +
+        'font-family:' + badgeFont(name) + ';font-size:20px;font-weight:500;line-height:26px;' +
         'letter-spacing:0.4px;white-space:nowrap;' +
         'background:' + color + ';color:' + textColor + '">' + name + '</div>';
     document.body.appendChild(el);
@@ -478,6 +490,9 @@
     overlay.classList.add('hidden');
     startCursor(saved);
   } else {
+    nickInput.addEventListener('input', function () {
+      nickInput.classList.toggle('kr-font', hasKorean(nickInput.value));
+    });
     nickInput.addEventListener('keydown', function (e) {
       if (e.key === 'Enter') { e.preventDefault(); submitNick(); }
       if (e.key !== 'Enter') nickInput.style.borderBottomColor = '';

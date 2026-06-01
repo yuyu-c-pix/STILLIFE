@@ -6,6 +6,10 @@
 
   if (window.innerWidth > 768) return;
 
+  function hasKorean(str) {
+    return /[가-힣ᄀ-ᇿ㄰-㆏]/.test(str);
+  }
+
   const wrap      = document.querySelector('.int-mobile-wrap');
   const placeholder = document.querySelector('.int-mobile-placeholder');
   const inputEl   = document.querySelector('.int-mobile-input');
@@ -162,6 +166,10 @@
     deactivateInput();
   }
 
+  inputEl.addEventListener('input', function () {
+    inputEl.classList.toggle('kr-font', hasKorean(inputEl.value));
+  });
+
   inputEl.addEventListener('keydown', function (e) {
     if (e.key === 'Enter') { e.preventDefault(); submitInput(); }
     if (e.key === 'Escape') deactivateInput();
@@ -242,9 +250,12 @@
   function addDot(name, bg, fg, delay) {
     const el = document.createElement('div');
     el.className = 'presence-mob';
+    const dotFont = hasKorean(name)
+      ? '"Sandoll 60","megascope-variable",sans-serif'
+      : '"megascope-variable",sans-serif';
     el.innerHTML =
       '<div class="presence-mob-dot" style="background:' + bg + '"></div>' +
-      '<div class="presence-mob-name" style="background:' + bg + ';color:' + fg + '">' + name + '</div>';
+      '<div class="presence-mob-name" style="background:' + bg + ';color:' + fg + ';font-family:' + dotFont + '">' + name + '</div>';
     el.style.opacity = '0';
     wrap.appendChild(el);
     const x = rand(10, Math.max(11, window.innerWidth - 110));
@@ -289,15 +300,18 @@
      C — 카드 슬라이드인 (페이지 로드 후 2.2s)
   ══════════════════════════════════════════ */
   function initCardSlideIn() {
-    const cards = document.querySelectorAll('.int-card-mobile');
+    const cards = Array.from(document.querySelectorAll('.int-card-mobile'));
     if (!cards.length) return;
-    const target = cards[Math.floor(Math.random() * cards.length)];
-    target.style.transition = 'none';
-    target.style.transform  = 'translateX(110vw)';
-    setTimeout(function () {
-      target.style.transition = 'transform 0.95s cubic-bezier(0.22, 1, 0.36, 1)';
-      target.style.transform  = 'translateX(0)';
-    }, 2200);
+    const shuffled = cards.slice().sort(function () { return Math.random() - 0.5; });
+    const targets  = shuffled.slice(0, Math.min(2, shuffled.length));
+    targets.forEach(function (target, i) {
+      target.style.transition = 'none';
+      target.style.transform  = 'translateX(110vw)';
+      setTimeout(function () {
+        target.style.transition = 'transform 0.95s cubic-bezier(0.22, 1, 0.36, 1)';
+        target.style.transform  = 'translateX(0)';
+      }, 2200 + i * 400);
+    });
   }
 
   /* ══════════════════════════════════════════
@@ -392,6 +406,10 @@
       hideOverlayMob();           /* DOM에서 완전 제거 — CSS로 다시 보일 수 없음 */
       try { startMobileExperience(name); } catch (e) {}
     }
+
+    nickInput.addEventListener('input', function () {
+      nickInput.classList.toggle('kr-font', hasKorean(nickInput.value || ''));
+    });
 
     nickInput.addEventListener('keydown', function (e) {
       var isEnter = (e.key === 'Enter' || e.keyCode === 13);
